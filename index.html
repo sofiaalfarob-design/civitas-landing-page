@@ -1,0 +1,1429 @@
+<!DOCTYPE html>
+<html lang="es-CR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Software de gestión para arquitectos en Costa Rica | Civitas</title>
+  <meta name="description" content="Civitas centraliza trámites municipales, planos y comunicación con clientes. Diseñado para el arquitecto costarricense. Acceso anticipado disponible." />
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://civitas.app/" />
+
+  <!-- Favicon (inline SVG — no archivo externo necesario) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23db5e1a'/><text x='50%25' y='73%25' text-anchor='middle' font-size='20' font-family='sans-serif' fill='white'>C</text></svg>" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://civitas.app/" />
+  <meta property="og:title"       content="Civitas — Software para arquitectos en Costa Rica" />
+  <meta property="og:description" content="Gestiona trámites, planos y clientes en un solo lugar. Diseñado para el profesional costarricense. Quedan pocos lugares de acceso anticipado." />
+  <meta property="og:image"        content="https://civitas.app/assets/image-dashboard-principal.png" />
+  <meta property="og:image:width"  content="1074" />
+  <meta property="og:image:height" content="629" />
+  <meta property="og:locale"       content="es_CR" />
+  <meta property="og:site_name"   content="Civitas" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Civitas — Software para arquitectos en Costa Rica" />
+  <meta name="twitter:description" content="Gestiona trámites, planos y clientes en un solo lugar. Acceso anticipado disponible." />
+  <meta name="twitter:image"       content="https://civitas.app/assets/image-dashboard-principal.png" />
+
+  <!-- Schema: SoftwareApplication -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Civitas",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "description": "Software de gestión de proyectos de construcción para arquitectos en Costa Rica. Centraliza trámites municipales, planos y comunicación con el cliente.",
+    "inLanguage": "es-CR",
+    "offers": { "@type": "Offer", "priceCurrency": "CRC", "availability": "https://schema.org/PreOrder" },
+    "creator": { "@type": "Organization", "name": "Sparka Corp", "url": "https://civitas.app", "logo": "https://civitas.app/assets/logo-civitas-color.png" }
+  }
+  </script>
+
+  <!-- Schema: WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://civitas.app",
+    "name": "Civitas",
+    "description": "Software de gestión de proyectos de construcción para arquitectos en Costa Rica."
+  }
+  </script>
+
+  <!-- Analytics: reemplazar UA-XXXXXXXXX con tu GA4 measurement ID -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script> -->
+
+  <link rel="preload" as="image" href="assets/image-dashboard-principal.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@700&family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream:       #f8f6f2;
+      --dark:        #2c2d2a;
+      --muted:       #696b64;
+      --orange:      #db5e1a;
+      --orange-soft: #f07038;
+      --navy-cta:    #0c1326;
+      --blue:        #78a0ff;
+      --border:      #e5e1d8;
+      --sage:        #8b9b7e;
+      --rose:        #c18c8c;
+      --navy-link:   #002966;
+      --logo-dark:   #051124;
+      --ink:         #0a0f1a;
+      --charcoal:    #41454a;
+      --eyebrow:     #576595;
+      --slate:       #94a3b8;
+    }
+
+    html, body { margin: 0; padding: 0; width: 100%; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--dark);
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; }
+
+    /* ── PAGE WRAPPER ─────────────────────────── */
+    .page {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    /* ── VIDEO MODAL ──────────────────────────── */
+    .modal-overlay {
+      display: none; position: fixed; inset: 0; z-index: 1000;
+      background: rgba(0,0,0,.85);
+      align-items: center; justify-content: center;
+    }
+    .modal-overlay.open { display: flex; }
+    .modal-box {
+      position: relative; width: 90%; max-width: 900px;
+      background: #000; border-radius: 16px; overflow: hidden;
+    }
+    .modal-close {
+      position: absolute; top: 12px; right: 14px; z-index: 10;
+      background: rgba(0,0,0,.6); border: none; border-radius: 50%;
+      width: 32px; height: 32px; font-size: 16px; color: #fff;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+    }
+    .modal-close:hover { background: rgba(255,255,255,.2); }
+    .vid-wrap { position: relative; padding-bottom: 56.25%; height: 0; }
+    .vid-wrap iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+
+    /* ── VIDEO POPUP CARD ─────────────────────── */
+    .video-popup {
+      position: fixed; bottom: 24px; right: 24px; z-index: 500;
+      width: 300px; background: #0c1326;
+      border: 1px solid rgba(120,160,255,.2); border-radius: 16px;
+      padding: 14px 16px; display: flex; align-items: center; gap: 14px;
+      cursor: pointer; text-decoration: none;
+      opacity: 0; transform: translateY(24px) scale(.97);
+      pointer-events: none;
+      transition: opacity .45s cubic-bezier(.22,1,.36,1),
+                  transform .45s cubic-bezier(.22,1,.36,1);
+      box-shadow: 0 8px 32px rgba(0,0,0,.35), 0 2px 8px rgba(0,0,0,.2);
+    }
+    .video-popup.show {
+      opacity: 1; transform: translateY(0) scale(1); pointer-events: auto;
+    }
+    .video-popup:hover { border-color: rgba(120,160,255,.45); }
+    .vp-thumb {
+      width: 76px; height: 52px; border-radius: 8px; flex-shrink: 0;
+      background: #1a2744; display: flex; align-items: center; justify-content: center;
+      overflow: hidden; position: relative;
+    }
+    .vp-play {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: rgba(120,160,255,.18); border: 1px solid rgba(120,160,255,.35);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .vp-text { flex: 1; }
+    .vp-title { font-size: 13px; font-weight: 700; color: #f8fafc; line-height: 1.3; }
+    .vp-sub   { font-size: 11px; color: #78a0ff; margin-top: 3px; font-weight: 500; }
+    .vp-close {
+      position: absolute; top: 9px; right: 9px; width: 20px; height: 20px;
+      border-radius: 50%; border: none; background: rgba(255,255,255,.08);
+      color: #7a8090; font-size: 11px; cursor: pointer; line-height: 1;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    .vp-close:hover { background: rgba(255,255,255,.18); color: #fff; }
+    .demo-play svg, .vp-play svg { margin-left: 2px; }
+
+    /* ── SKIP LINK ───────────────────────────── */
+    .skip-link {
+      position: absolute; top: -100%; left: 8px; z-index: 9999;
+      background: var(--dark); color: #fff; padding: 8px 16px;
+      border-radius: 4px; font-size: 14px; font-weight: 700;
+      text-decoration: none; transition: top .15s;
+    }
+    .skip-link:focus { top: 8px; }
+
+    /* ── SCREEN-READER ONLY ──────────────────── */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px;
+      padding: 0; margin: -1px; overflow: hidden;
+      clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+    }
+
+    /* ── FORM TRUST & ERRORS ─────────────────── */
+    .form-wrap { display: flex; flex-direction: column; gap: 8px; }
+    .form-trust {
+      font-size: 12px; color: var(--muted); line-height: 1.5;
+    }
+    .field-error {
+      display: none; font-size: 12px; color: #dc2626; font-weight: 500;
+    }
+    .field-error.show { display: block; }
+    .field-error-cta { color: #78a0ff; } /* legible sobre fondo oscuro */
+
+    /* ── SUCCESS MSG ──────────────────────────── */
+    .success-msg {
+      display: none; align-items: center; gap: 8px; padding: 12px 16px;
+      border-radius: 8px; font-size: .875rem; font-weight: 600;
+    }
+    .success-msg.show { display: flex; }
+
+    /* ════════════════════════════════════════════
+       NAV
+    ════════════════════════════════════════════ */
+    #navbar {
+      position: sticky; top: 0; z-index: 300;
+      height: 94px; display: flex; align-items: center;
+      padding: 0 80px;
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(229,225,216,.5);
+    }
+    .nav-inner { width: 100%; display: flex; align-items: center; }
+    .nav-logo { display: flex; align-items: center; flex-shrink: 0; text-decoration: none; }
+    .nav-logo img { height: 50px; width: auto; display: block; }
+    .nav-sp { flex: 1; }
+    .nav-links {
+      display: flex; gap: 32px; list-style: none;
+      font-size: 14px; font-weight: 500; color: var(--dark);
+    }
+    .nav-links a { transition: opacity .2s; }
+    .nav-links a:hover { opacity: .7; }
+    .nav-cta {
+      background: var(--orange); color: #fff; border: none; border-radius: 8px;
+      padding: 9px 20px; font-family: 'Inter', sans-serif;
+      font-size: 13px; font-weight: 700; cursor: pointer;
+      text-decoration: none; transition: background .2s; white-space: nowrap;
+    }
+    .nav-cta:hover { background: #c2531a; }
+    /* Hamburger + mobile menu: ocultos en desktop */
+    .nav-hamburger { display: none; }
+    .nav-mobile-menu { display: none; }
+
+    /* ════════════════════════════════════════════
+       HERO
+    ════════════════════════════════════════════ */
+    .hero { height: 700px; display: flex; align-items: stretch; }
+
+    .hero-left {
+      flex: 1; background: #fff; padding: 80px;
+      display: flex; flex-direction: column; justify-content: center; gap: 40px;
+    }
+    .hero-eyebrow {
+      font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 700;
+      color: var(--eyebrow); text-transform: uppercase; letter-spacing: .05em;
+    }
+    .hero-text { display: flex; flex-direction: column; gap: 20px; }
+    .hero-h1 {
+      font-family: 'Sora', sans-serif; font-size: 50px; font-weight: 700;
+      color: var(--dark); line-height: 1.08; letter-spacing: -.02em;
+    }
+    .hero-sub { font-size: 18px; color: var(--muted); line-height: 1.6; }
+
+    #success-hero {
+      background: rgba(0,41,102,.06); border: 1px solid rgba(0,41,102,.18);
+      color: var(--navy-link);
+    }
+
+    .hero-form {
+      background: #fff; border: 1px solid #9a9390; border-radius: 12px;
+      display: flex; align-items: stretch; width: 480px; overflow: hidden;
+    }
+    .hero-form-input {
+      flex: 1; padding: 0 20px; height: 56px; background: none; border: none;
+      font-family: 'Inter', sans-serif; font-size: 14px; color: var(--dark);
+    }
+    .hero-form-input::placeholder { color: var(--muted); }
+    .hero-form-input:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+    .hero-form-btn {
+      background: var(--dark); color: #fff; border: none; border-radius: 8px;
+      width: 180px; height: 56px; font-family: 'Inter', sans-serif;
+      font-size: 14px; font-weight: 700; cursor: pointer; flex-shrink: 0;
+      transition: background .2s;
+    }
+    .hero-form-btn:hover { background: #3a3b38; }
+
+    .hero-right {
+      width: 720px; flex-shrink: 0;
+      background:
+        linear-gradient(145.38deg, rgba(0,0,0,.5) 13.64%, rgba(3,45,124,.5) 82.97%),
+        linear-gradient(90deg, rgb(13,15,22) 0%, rgb(13,15,22) 100%);
+    }
+
+    /* ════════════════════════════════════════════
+       FLOATING MACBOOK
+    ════════════════════════════════════════════ */
+    @keyframes macSlideIn {
+      from { transform: translateX(180px); opacity: 0; }
+      to   { transform: translateX(0);     opacity: 1; }
+    }
+    .floating-mac {
+      position: absolute;
+      right: -160px; top: 220px;
+      width: 860px;
+      z-index: 10; pointer-events: none;
+      animation: macSlideIn .9s cubic-bezier(0.22, 1, 0.36, 1) 0.3s both;
+      filter: drop-shadow(0 24px 60px rgba(0,0,0,.35));
+    }
+    .floating-mac img {
+      width: 100%; height: auto; display: block;
+    }
+
+    /* ════════════════════════════════════════════
+       PROBLEMA
+    ════════════════════════════════════════════ */
+    .problema {
+      background: var(--cream); padding: 80px;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 48px;
+    }
+    .prob-header { display: flex; flex-direction: column; gap: 10px; }
+    .prob-header h2 {
+      font-family: 'Space Grotesk', sans-serif; font-size: 40px; font-weight: 700;
+      color: var(--ink); letter-spacing: -.03em;
+    }
+    .prob-header p { font-size: 16px; color: var(--ink); }
+    .prob-cards { display: flex; gap: 20px; width: 100%; }
+    .prob-card {
+      flex: 1; background: #fff; border: 1px solid var(--border); border-radius: 16px;
+      padding: 32px; display: flex; flex-direction: column; gap: 20px;
+      transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease;
+    }
+    @media (hover: hover) {
+      .prob-card:hover {
+        border-color: var(--dark);
+        box-shadow: 0 4px 6px rgba(44,45,42,.06), 0 12px 24px rgba(44,45,42,.1);
+        transform: translateY(-3px);
+      }
+    }
+    .prob-card-icon {
+      width: 52px; height: 52px; border-radius: 12px; background: #f3f4f6;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .prob-card-body h3 {
+      font-family: 'Space Grotesk', sans-serif; font-size: 24px; font-weight: 700;
+      color: var(--charcoal); margin-bottom: 14px;
+    }
+    .prob-card-body p { font-size: 14px; color: var(--charcoal); line-height: 1.7; }
+    .prob-cta { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .prob-cta p {
+      font-family: 'Space Grotesk', sans-serif; font-size: 26px; font-weight: 700;
+      color: var(--ink); letter-spacing: -.02em; text-align: center;
+    }
+    .orange-line { width: 60px; height: 3px; background: var(--orange-soft); border-radius: 2px; }
+
+    /* ════════════════════════════════════════════
+       FEAT DETAILS
+    ════════════════════════════════════════════ */
+    .feat-wrapper {
+      width: 100%;
+      border-top: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .feat-row {
+      width: 100%; height: 600px;
+      display: flex; align-items: stretch;
+    }
+
+    .feat-img-left {
+      width: 50%; flex-shrink: 0; position: relative; overflow: hidden;
+    }
+    /* Dark teal overlay matching Figma */
+    .feat-img-left::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(140.12deg, rgba(19,42,49,0.55) 0%, rgba(19,39,48,0.38) 100%);
+      z-index: 1; pointer-events: none;
+    }
+    .feat-img-left img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover; object-position: center center;
+    }
+    .feat-img-right {
+      width: 50%; flex-shrink: 0; position: relative; overflow: hidden;
+    }
+    .feat-img-right img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover; object-position: center center;
+    }
+
+    .feat-text-col {
+      flex: 1; min-width: 0;
+      background: #fff;
+      padding: 100px;
+      display: flex; flex-direction: column; justify-content: center; gap: 32px;
+    }
+
+    /* Después de 1920px las secciones dejan de crecer y se centran */
+    @media (min-width: 1921px) {
+      .feat-wrapper {
+        max-width: 1920px;
+        margin: 0 auto;
+        border-left: 1px solid var(--border);
+        border-right: 1px solid var(--border);
+      }
+    }
+    .feat-eyebrow {
+      font-size: 12px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .feat-eyebrow.sage { color: #5c7050; }
+    .feat-eyebrow.rose { color: #7a3a3a; }
+    .feat-h2 {
+      font-family: 'Sora', sans-serif; font-size: 40px; font-weight: 700;
+      color: var(--dark); line-height: 1.15;
+    }
+    .feat-body { font-size: 16px; color: var(--muted); line-height: 1.7; }
+    .feat-bullets { display: flex; flex-direction: column; gap: 12px; }
+    .feat-bullet { display: flex; align-items: center; gap: 12px; }
+    .bullet-dot { width: 6px; height: 6px; border-radius: 3px; flex-shrink: 0; }
+    .bullet-dot.sage { background: var(--sage); }
+    .bullet-dot.rose { background: var(--rose); }
+    .feat-bullet span { font-size: 14px; font-weight: 500; color: #000; }
+
+    /* ════════════════════════════════════════════
+       FEATURES LIST
+    ════════════════════════════════════════════ */
+    .features-list {
+      background: var(--cream); padding: 120px;
+      display: flex; flex-direction: column; gap: 64px;
+    }
+    .features-list h2 {
+      font-family: 'Sora', sans-serif; font-size: 40px; font-weight: 700;
+      color: var(--dark); text-align: center; letter-spacing: -.02em;
+    }
+    .feat-grid {
+      display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px;
+    }
+    .feat-item {
+      padding-top: 0; padding-bottom: 32px;
+      border-bottom: 1px solid var(--border);
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .feat-item:nth-child(n+3) { padding-top: 32px; }
+    .feat-item h3 {
+      font-family: 'Sora', sans-serif; font-size: 18px; font-weight: 700;
+      color: var(--dark);
+    }
+    .feat-item p { font-size: 14px; color: var(--muted); }
+
+    /* ════════════════════════════════════════════
+       PROB VIDEO (thumbnail dentro de § Problema)
+    ════════════════════════════════════════════ */
+    .prob-video {
+      width: 100%; max-width: 940px; height: 538px;
+      align-self: center;
+      background: var(--navy-cta);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      position: relative; overflow: hidden; cursor: pointer;
+      box-shadow: 0 10px 28px -10px rgba(0,0,0,0.12);
+      transition: box-shadow .25s ease;
+    }
+    @media (hover: hover) {
+      .prob-video:hover { box-shadow: 0 16px 48px -10px rgba(0,0,0,0.22); }
+      .prob-video:hover .demo-play { background: rgba(255,255,255,.22); }
+    }
+
+    /* ════════════════════════════════════════════
+       DEMO SECTION — Entendiendo el demo
+    ════════════════════════════════════════════ */
+    .demo-section {
+      background: #fff;
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      padding: 80px; display: flex; flex-direction: column; gap: 48px;
+    }
+    .demo-header { display: flex; flex-direction: column; gap: 12px; align-items: center; }
+    .demo-eyebrow {
+      font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 700;
+      color: var(--navy-link); text-transform: uppercase; letter-spacing: .05em;
+    }
+    .demo-header h2 {
+      font-family: 'Sora', sans-serif; font-size: 40px; font-weight: 700;
+      color: var(--dark); text-align: center; letter-spacing: -.02em;
+    }
+    .demo-header > p { font-size: 16px; color: var(--muted); text-align: center; }
+    .demo-content { display: flex; gap: 64px; align-items: flex-start; }
+
+    .demo-thumb {
+      background: var(--navy-cta); border: 1px solid rgba(255,255,255,.06);
+      border-radius: 16px; width: 560px; height: 320px; flex-shrink: 0;
+      position: relative; overflow: hidden; cursor: pointer;
+    }
+    .demo-play {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 64px; height: 64px; border-radius: 32px;
+      background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25);
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s;
+    }
+    @media (hover: hover) {
+      .demo-thumb:hover .demo-play { background: rgba(255,255,255,.22); }
+    }
+    .demo-label {
+      position: absolute; top: 15px; right: 15px;
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14);
+      border-radius: 999px; padding: 7px 14px;
+      display: flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 600; color: #fff;
+    }
+    .demo-text { flex: 1; display: flex; flex-direction: column; gap: 20px; }
+    .demo-text h3 {
+      font-family: 'Sora', sans-serif; font-size: 32px; font-weight: 700;
+      color: var(--dark); letter-spacing: -.015em;
+    }
+    .demo-text > p { font-size: 16px; color: var(--muted); line-height: 1.7; }
+    .demo-bullets { display: flex; flex-direction: column; gap: 12px; }
+    .demo-bullet { display: flex; align-items: flex-start; gap: 12px; }
+    .demo-dot {
+      width: 6px; height: 6px; border-radius: 3px;
+      background: var(--navy-link); flex-shrink: 0; margin-top: 5px;
+    }
+    .demo-bullet p { font-size: 14px; font-weight: 500; color: var(--dark); line-height: 1.55; }
+
+    /* ── App screenshots strip ─────────────────── */
+    .app-shots {
+      display: flex; gap: 20px; justify-content: center; align-items: flex-start;
+    }
+    .app-shot {
+      flex: 1; min-width: 0;
+      border-radius: 14px; overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(44,45,42,.06), 0 12px 32px rgba(44,45,42,.08);
+    }
+    .app-shot img {
+      width: 100%; height: auto; display: block;
+    }
+
+    /* ════════════════════════════════════════════
+       CTA DARK
+    ════════════════════════════════════════════ */
+    .cta-section {
+      background: var(--navy-cta); min-height: 560px; padding: 80px;
+      display: flex; flex-direction: column; gap: 20px;
+      align-items: center; justify-content: center;
+    }
+    .cta-eyebrow {
+      font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 700;
+      color: var(--eyebrow); text-transform: uppercase; letter-spacing: .05em;
+    }
+    .cta-inner { display: flex; flex-direction: column; gap: 20px; align-items: center; }
+    .cta-inner h2 {
+      font-family: 'Space Grotesk', sans-serif; font-size: 46px; font-weight: 700;
+      color: #f8fafc; letter-spacing: -.03em; line-height: 1.12; text-align: center;
+    }
+    .cta-inner > p { font-size: 15px; color: var(--slate); text-align: center; line-height: 1.65; max-width: 618px; }
+    .progress-wrap { display: flex; flex-direction: column; gap: 10px; align-items: center; width: 520px; }
+    .progress-track {
+      background: #111827; border: 1px solid #1e293b;
+      border-radius: 100px; height: 8px; width: 520px; overflow: hidden; position: relative;
+    }
+    .progress-fill {
+      position: absolute; background: var(--blue);
+      height: 8px; border-radius: 100px; left: 0; top: 0; width: 94%;
+    }
+    .progress-label { font-size: 13px; color: var(--slate); text-align: center; }
+
+    #success-cta {
+      background: rgba(120,160,255,.1); border: 1px solid rgba(120,160,255,.22);
+      color: var(--slate);
+    }
+
+    .cta-form-row { display: flex; gap: 20px; }
+    .cta-input {
+      background: #111827; border: 1px solid #6b7a95; border-radius: 8px;
+      height: 52px; width: 309px; padding: 0 20px;
+      font-family: 'Inter', sans-serif; font-size: 15px; color: #f8fafc;
+      transition: border-color .2s;
+    }
+    .cta-input::placeholder { color: #4b5563; }
+    .cta-input:focus-visible { border-color: #334155; outline: 2px solid var(--blue); outline-offset: 2px; }
+    .cta-submit {
+      background: var(--blue); color: #fff; border: none; border-radius: 8px;
+      height: 52px; width: 283px; font-family: 'Inter', sans-serif;
+      font-size: 16px; font-weight: 700; cursor: pointer; transition: background .2s;
+    }
+    .cta-submit:hover { background: #5a83e8; }
+    .cta-note { font-size: 12px; color: #8b97aa; text-align: center; }
+
+    /* ════════════════════════════════════════════
+       ANIMATIONS
+    ════════════════════════════════════════════ */
+    @keyframes heroUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes heroFade {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    /* Nav + Hero — cargan al abrir la página */
+    #navbar        { animation: heroFade .5s ease .05s both; }
+    .hero-right    { animation: heroFade .9s ease .1s  both; }
+    .hero-eyebrow  { animation: heroUp  .6s  cubic-bezier(.22,1,.36,1) .12s both; }
+    .hero-text     { animation: heroUp  .65s cubic-bezier(.22,1,.36,1) .24s both; }
+    .hero-form     { animation: heroUp  .65s cubic-bezier(.22,1,.36,1) .38s both; }
+
+    /* Scroll-reveal — estados iniciales inyectados por JS */
+    .sr-up {
+      opacity: 0; transform: translateY(36px);
+      transition: opacity .65s cubic-bezier(.22,1,.36,1),
+                  transform .65s cubic-bezier(.22,1,.36,1);
+    }
+    .sr-left {
+      opacity: 0; transform: translateX(-56px);
+      transition: opacity .75s cubic-bezier(.22,1,.36,1),
+                  transform .75s cubic-bezier(.22,1,.36,1);
+    }
+    .sr-right {
+      opacity: 0; transform: translateX(56px);
+      transition: opacity .75s cubic-bezier(.22,1,.36,1),
+                  transform .75s cubic-bezier(.22,1,.36,1);
+    }
+    .sr-up.in-view,
+    .sr-left.in-view,
+    .sr-right.in-view {
+      opacity: 1; transform: translate(0, 0);
+    }
+
+    /* ════════════════════════════════════════════
+       FOOTER
+    ════════════════════════════════════════════ */
+    footer {
+      background: #fff; border-top: 1px solid var(--border); padding: 40px 80px;
+    }
+    .footer-inner { display: flex; align-items: flex-end; justify-content: space-between; }
+    .footer-brand { display: flex; flex-direction: column; gap: 16px; }
+    .footer-logo img { height: 60px; width: auto; display: block; }
+    .footer-copy { font-size: 12px; color: var(--muted); }
+    .footer-links {
+      display: flex; gap: 32px; list-style: none;
+      font-size: 12px; font-weight: 700; color: var(--dark); letter-spacing: .04em;
+    }
+    .footer-links a:hover { opacity: .6; }
+
+    /* ════════════════════════════════════════════
+       RESPONSIVE — TABLET (≤ 1024px)
+    ════════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      #navbar { padding: 0 40px; height: 72px; }
+
+      .hero { height: auto; min-height: 520px; }
+      .hero-left { padding: 60px 40px; gap: 32px; }
+      .hero-right { width: 340px; }
+      .hero-h1 { font-size: clamp(30px, 4vw, 42px); }
+      .hero-form { width: 100%; max-width: 440px; }
+      .floating-mac { width: 560px; right: -60px; top: 160px; }
+
+      .problema { padding: 64px 40px; }
+      .prob-header h2 { font-size: 32px; }
+
+      .feat-text-col { padding: 60px 40px; }
+      .feat-h2 { font-size: 32px; }
+
+      .features-list { padding: 80px 40px; }
+      .features-list h2 { font-size: 32px; }
+
+      .prob-video { height: 400px; }
+      .demo-section { padding: 64px 40px; }
+      .demo-header h2 { font-size: 32px; }
+      .demo-thumb { width: 380px; height: 240px; }
+
+      .cta-section { padding: 64px 40px; }
+      .cta-inner h2 { font-size: 36px; }
+      .progress-wrap { width: 100%; max-width: 480px; }
+      .progress-track { width: 100%; }
+
+      footer { padding: 36px 40px; }
+    }
+
+    /* ════════════════════════════════════════════
+       RESPONSIVE — MÓVIL (≤ 768px)
+    ════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+
+      /* NAV */
+      #navbar { padding: 0 20px; height: 64px; }
+      .nav-links,
+      .nav-sp,
+      .nav-cta { display: none; }
+
+      .nav-hamburger {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        cursor: pointer;
+        padding: 8px;
+        background: none;
+        border: none;
+        margin-left: auto;
+      }
+      .nav-hamburger span {
+        display: block;
+        width: 22px; height: 2px;
+        background: var(--dark);
+        border-radius: 2px;
+        transition: transform .3s ease, opacity .2s ease;
+        transform-origin: center;
+      }
+      .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      .nav-hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+      /* MOBILE MENU */
+      .nav-mobile-menu {
+        display: none;
+        position: fixed;
+        top: 64px; left: 0; right: 0;
+        background: rgba(255,255,255,.97);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border);
+        z-index: 299;
+        padding: 20px 20px 28px;
+        flex-direction: column;
+        gap: 4px;
+        box-shadow: 0 8px 32px rgba(0,0,0,.08);
+      }
+      .nav-mobile-menu.open { display: flex; }
+      .nav-mob-link {
+        display: block;
+        padding: 13px 16px;
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--dark);
+        border-radius: 10px;
+        transition: background .15s;
+      }
+      .nav-mob-link:hover { background: #f3f4f6; }
+      .nav-mob-cta {
+        display: block;
+        margin-top: 8px;
+        background: var(--orange);
+        color: #fff;
+        text-align: center;
+        padding: 14px;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: 700;
+        transition: background .2s;
+      }
+      .nav-mob-cta:hover { background: #c2531a; }
+
+      /* HERO */
+      .hero { flex-direction: column; height: auto; }
+      .hero-left { padding: 48px 20px 40px; gap: 28px; }
+      .hero-right { display: none; }
+      .floating-mac { display: none; }
+      .hero-h1 { font-size: 30px; letter-spacing: -.01em; }
+      .hero-sub { font-size: 15px; }
+      .hero-eyebrow { font-size: 12px; }
+      .hero-form {
+        width: 100%;
+        flex-direction: column;
+        height: auto;
+        border-radius: 0;
+        border: none;
+        background: transparent;
+        overflow: visible;
+        gap: 10px;
+      }
+      .hero-form-input {
+        flex: none;
+        width: 100%; height: 60px;
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        background: #fff;
+        padding: 0 20px;
+        font-size: 16px;
+      }
+      .hero-form-btn {
+        width: 100%; height: 60px;
+        border-radius: 14px;
+        font-size: 16px;
+      }
+
+      /* PROBLEMA */
+      .prob-video { height: 220px; border-radius: 12px; }
+      .problema { padding: 48px 20px; gap: 32px; }
+      .prob-header h2 { font-size: 26px; }
+      .prob-cards { flex-direction: column; gap: 14px; }
+
+      /* FEAT DETAILS */
+      .feat-row { flex-direction: column; height: auto; }
+      .feat-img-left,
+      .feat-img-right {
+        width: 100%; height: 260px;
+        flex-shrink: unset; position: relative;
+      }
+      /* Fila 2: imagen estaba al final en HTML, sube arriba en mobile */
+      .feat-row:last-of-type .feat-img-right { order: -1; }
+      .feat-text-col { width: 100%; padding: 36px 20px; gap: 20px; }
+      .feat-h2 { font-size: 26px; }
+      .feat-body { font-size: 14px; }
+
+      /* Slide animations → fade-up en mobile (evita corte horizontal) */
+      .sr-left  { transform: translateY(28px); }
+      .sr-right { transform: translateY(28px); }
+      .sr-left.in-view,
+      .sr-right.in-view { transform: translateY(0); }
+
+      /* FEATURES LIST */
+      .features-list { padding: 56px 20px; gap: 36px; }
+      .features-list h2 { font-size: 26px; }
+      .feat-grid { grid-template-columns: 1fr; }
+      .feat-item { padding-top: 32px; }
+      .feat-item:first-child { padding-top: 0; }
+
+      /* DEMO */
+      .app-shots { flex-direction: column; gap: 16px; }
+      .demo-section { padding: 48px 20px; gap: 32px; }
+      .demo-header h2 { font-size: 26px; }
+      .demo-header > p { font-size: 14px; }
+      .demo-content { flex-direction: column; gap: 28px; }
+      .demo-thumb { width: 100%; height: 220px; flex-shrink: unset; }
+      .demo-text { flex: unset; }
+      .demo-text h3 { font-size: 22px; }
+      .demo-text > p { font-size: 14px; }
+
+      /* CTA */
+      .cta-section { padding: 56px 20px; }
+      .cta-inner h2 { font-size: 26px; letter-spacing: -.5px; }
+      .cta-inner > p { font-size: 14px; }
+      .progress-wrap { width: 100%; max-width: 100%; }
+      .progress-track { width: 100%; max-width: 100%; overflow: hidden; }
+      .progress-fill { max-width: 100%; }
+      .cta-form-row { flex-direction: column; gap: 10px; width: 100%; }
+      .cta-input { width: 100%; height: 56px; font-size: 16px; border-radius: 10px; }
+      .cta-submit { width: 100%; height: 56px; font-size: 16px; border-radius: 10px; }
+
+      /* FOOTER */
+      footer { padding: 28px 20px; }
+      .footer-inner { flex-direction: column; gap: 20px; align-items: flex-start; }
+      .footer-links { gap: 16px; flex-wrap: wrap; }
+
+      /* VIDEO POPUP — ocultar en móvil */
+      .video-popup { display: none !important; }
+    }
+
+    /* ════════════════════════════════════════════
+       REDUCED MOTION
+    ════════════════════════════════════════════ */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      html { scroll-behavior: auto; }
+      .sr-up, .sr-left, .sr-right { opacity: 1; transform: none; }
+    }
+
+    /* ════════════════════════════════════════════
+       MÓVIL PEQUEÑO (≤ 390px)
+    ════════════════════════════════════════════ */
+    @media (max-width: 390px) {
+      .hero-h1 { font-size: 26px; }
+      .prob-header h2,
+      .feat-h2,
+      .features-list h2,
+      .demo-header h2,
+      .cta-inner h2 { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- ══ VIDEO MODAL ══════════════════════════════════ -->
+  <div id="video-modal" class="modal-overlay">
+    <div class="modal-box">
+      <button type="button" class="modal-close" aria-label="Cerrar video">✕</button>
+      <div class="vid-wrap">
+        <iframe id="yt-iframe" src="" title="Civitas Demo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══ VIDEO POPUP CARD (first scroll) ════════════ -->
+  <div id="video-popup-card" class="video-popup" role="button" tabindex="0"
+       aria-label="Ver demo de Civitas">
+    <button type="button" class="vp-close" aria-label="Cerrar" title="Cerrar">✕</button>
+    <div class="vp-thumb">
+      <div class="vp-play">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="#78a0ff" aria-hidden="true"><path d="M5 3l14 9-14 9V3z"/></svg>
+      </div>
+    </div>
+    <div class="vp-text">
+      <p class="vp-title">¿Cómo funciona Civitas?</p>
+      <p class="vp-sub">Ver demo · 2 min</p>
+    </div>
+  </div>
+
+  <div class="page">
+
+    <!-- ══ NAV ══════════════════════════════════════════ -->
+    <nav id="navbar">
+      <div class="nav-inner">
+        <a href="#inicio" class="nav-logo">
+          <img src="assets/logo-civitas-color.png" alt="Civitas by Sparka Corp" width="858" height="246" />
+        </a>
+        <div class="nav-sp"></div>
+        <ul class="nav-links">
+          <li><a href="#problema">Cómo funciona</a></li>
+          <li><a href="#funcionalidades">Funcionalidades</a></li>
+          <li><a href="#acceso">Acceso anticipado</a></li>
+        </ul>
+        <div class="nav-sp"></div>
+        <a href="#acceso" class="nav-cta">Quiero acceso</a>
+        <button class="nav-hamburger" id="nav-hamburger" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- ══ MOBILE MENU ═══════════════════════════════ -->
+    <div class="nav-mobile-menu" id="nav-mobile-menu" aria-hidden="true">
+      <a href="#problema"       class="nav-mob-link" data-nav-close>Cómo funciona</a>
+      <a href="#funcionalidades"class="nav-mob-link" data-nav-close>Funcionalidades</a>
+      <a href="#acceso"         class="nav-mob-link" data-nav-close>Acceso anticipado</a>
+      <a href="#acceso"         class="nav-mob-cta"  data-nav-close>Quiero acceso →</a>
+    </div>
+
+
+    <main id="main-content">
+
+    <!-- ══ HERO ══════════════════════════════════════════ -->
+    <section class="hero" id="inicio">
+      <div class="hero-left">
+        <p class="hero-eyebrow">Quedan pocos lugares</p>
+        <div class="hero-text">
+          <h1 class="hero-h1">Software de gestión de proyectos para arquitectos en Costa Rica</h1>
+          <p class="hero-sub">Menos llamadas del cliente, menos emails perdidos, menos versiones del mismo plano. Todo lo que necesitás para gestionar tus proyectos en un solo lugar.</p>
+        </div>
+        <div id="success-hero" class="success-msg" role="status">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          ¡Lugar reservado! Te avisamos antes del lanzamiento.
+        </div>
+        <div class="form-wrap">
+          <form id="form-hero" class="hero-form">
+            <label for="email-hero" class="sr-only">Correo electrónico profesional</label>
+            <input class="hero-form-input" type="email" id="email-hero"
+              placeholder="Correo electrónico profesional" required
+              autocomplete="email" aria-describedby="err-hero" />
+            <button type="submit" class="hero-form-btn" id="btn-hero">Reservar mi lugar</button>
+          </form>
+          <span class="field-error" id="err-hero" role="alert"></span>
+          <p class="form-trust">Sin tarjeta de crédito · Sin compromisos · Te avisamos antes del lanzamiento</p>
+        </div>
+      </div>
+      <div class="hero-right" aria-hidden="true"></div>
+    </section>
+
+
+    <!-- ══ FLOATING MACBOOK ═══════════════════════════════ -->
+    <div class="floating-mac">
+      <img src="assets/image-dashboard-principal.png" alt="Civitas Dashboard en MacBook Air" width="1074" height="629" />
+    </div>
+
+
+    <!-- ══ PROBLEMA ══════════════════════════════════════ -->
+    <section class="problema" id="problema">
+
+      <!-- Video thumbnail -->
+      <div class="prob-video" role="button" tabindex="0"
+           aria-label="Ver demo de Civitas"
+           style="background: linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.3)), url('assets/demo-thumbnail.png') center/cover;">
+        <div class="demo-play">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M5 3l14 9-14 9V3z"/></svg>
+        </div>
+        <div class="demo-label">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+          Vista previa
+        </div>
+      </div>
+
+      <div class="prob-header">
+        <h2>¿Te suena familiar?</h2>
+        <p>Cada semana, los arquitectos pierden horas en esto:</p>
+      </div>
+      <div class="prob-cards">
+        <div class="prob-card">
+          <div class="prob-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#41454a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          </div>
+          <div class="prob-card-body">
+            <h3>Correos sin respuesta</h3>
+            <p>Permisos que el cliente no sube, documentos que se pierden en el hilo de emails.</p>
+          </div>
+        </div>
+        <div class="prob-card">
+          <div class="prob-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#41454a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>
+          </div>
+          <div class="prob-card-body">
+            <h3>Clientes desinformados</h3>
+            <p>Llamadas del cliente preguntando en qué va la obra cuando deberías estar diseñando.</p>
+          </div>
+        </div>
+        <div class="prob-card">
+          <div class="prob-card-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#41454a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2"/></svg>
+          </div>
+          <div class="prob-card-body">
+            <h3>Planos desactualizados</h3>
+            <p>Tu equipo trabajando con versiones distintas del mismo plano.</p>
+          </div>
+        </div>
+      </div>
+      <div class="prob-cta">
+        <p>Civitas resuelve todo esto</p>
+        <div class="orange-line"></div>
+      </div>
+    </section>
+
+
+    <!-- ══ FEAT DETAILS ══════════════════════════════════ -->
+    <section class="feat-wrapper" id="funcionalidades">
+
+      <!-- Para el arquitecto -->
+      <div class="feat-row">
+        <div class="feat-img-left">
+          <img src="assets/mockup-macbook-round-table.png" alt="Civitas en monitor de escritorio" width="1434" height="1198" loading="lazy" />
+        </div>
+        <div class="feat-text-col">
+          <p class="feat-eyebrow sage">PARA EL ARQUITECTO</p>
+          <h2 class="feat-h2">Un dashboard que lo dice todo</h2>
+          <p class="feat-body">No más hojas de cálculo infinitas. Todo lo que necesitas para que el proyecto avance está a un click de distancia.</p>
+          <div class="feat-bullets">
+            <div class="feat-bullet"><div class="bullet-dot sage"></div><span>Estado real de trámites municipales</span></div>
+            <div class="feat-bullet"><div class="bullet-dot sage"></div><span>Control presupuestario en tiempo real</span></div>
+            <div class="feat-bullet"><div class="bullet-dot sage"></div><span>Gestión de bitácoras digitales</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Para el cliente -->
+      <div class="feat-row">
+        <div class="feat-text-col">
+          <p class="feat-eyebrow rose">PARA EL CLIENTE</p>
+          <h2 class="feat-h2">Tu cliente siempre al día sin llamadas</h2>
+          <p class="feat-body">Reduce el ruido de comunicación. Civitas ofrece un portal exclusivo donde el cliente ve el progreso visual de su sueño.</p>
+          <div class="feat-bullets">
+            <div class="feat-bullet"><div class="bullet-dot rose"></div><span>Galería de fotos de avance de obra</span></div>
+            <div class="feat-bullet"><div class="bullet-dot rose"></div><span>Aprobación de acabados por el cliente</span></div>
+            <div class="feat-bullet"><div class="bullet-dot rose"></div><span>Histórico de pagos y cronograma</span></div>
+          </div>
+        </div>
+        <div class="feat-img-right">
+          <img src="assets/mockup-macbook-plant-table.png" alt="MacBook con portal de cliente Civitas" width="1438" height="1200" loading="lazy" />
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ══ FEATURES LIST ══════════════════════════════════ -->
+    <section class="features-list" id="features">
+      <h2>Funcionalidades diseñadas para el arquitecto costarricense</h2>
+      <div class="feat-grid">
+        <div class="feat-item">
+          <h3>Lista de proyectos</h3>
+          <p>Activos e inactivos en un vistazo</p>
+        </div>
+        <div class="feat-item">
+          <h3>Cambios de Anteproyecto</h3>
+          <p>Comentarios y cambios documentados</p>
+        </div>
+        <div class="feat-item">
+          <h3>Gestión de documentos</h3>
+          <p>Planos y permisos con orden real</p>
+        </div>
+        <div class="feat-item">
+          <h3>Revisión con IA</h3>
+          <p>Cumplimientos verificados solos</p>
+        </div>
+        <div class="feat-item">
+          <h3>Portal del cliente</h3>
+          <p>Tu cliente siempre informado</p>
+        </div>
+        <div class="feat-item">
+          <h3>Planos del equipo</h3>
+          <p>Una fuente única de verdad</p>
+        </div>
+      </div>
+
+      <!-- Screenshots de la plataforma -->
+      <div class="app-shots">
+        <div class="app-shot">
+          <img src="assets/image-dashboard-cliente.png" alt="Portal del cliente en Civitas" width="1492" height="900" loading="lazy" />
+        </div>
+        <div class="app-shot">
+          <img src="assets/image-dashboard-ia.png" alt="Análisis de IA en Civitas" width="1492" height="900" loading="lazy" />
+        </div>
+        <div class="app-shot">
+          <img src="assets/image-dashboard-project-view.png" alt="Estado del proyecto en Civitas" width="1492" height="900" loading="lazy" />
+        </div>
+      </div>
+
+    </section>
+
+
+
+
+    <!-- ══ DEMO SECTION ══════════════════════════════════ -->
+    <section class="demo-section" id="demo">
+      <div class="demo-header">
+        <p class="demo-eyebrow">Entendiendo el demo</p>
+        <h2>Todo lo que ves en el demo</h2>
+        <p>Un resumen de las funcionalidades clave que verás en la demostración.</p>
+      </div>
+      <div class="demo-content">
+        <!-- Thumbnail vacío — agregar video demo cuando esté listo -->
+        <div class="demo-thumb" role="button" tabindex="0"
+             aria-label="Demo próximamente disponible" aria-disabled="true">
+          <div class="demo-play">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white" aria-hidden="true"><path d="M5 3l14 9-14 9V3z"/></svg>
+          </div>
+          <div class="demo-label">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            Próximamente
+          </div>
+        </div>
+        <div class="demo-text">
+          <h3>Un recorrido rápido por la plataforma</h3>
+          <p>En el demo verás cómo Civitas ayuda a mantener todo organizado: planos, permisos, comunicación con el cliente y seguimiento del proyecto en un solo lugar.</p>
+          <div class="demo-bullets">
+            <div class="demo-bullet"><div class="demo-dot"></div><p>Dashboard del proyecto con estado real de trámites y documentos</p></div>
+            <div class="demo-bullet"><div class="demo-dot"></div><p>Gestión de planos y versiones con control de acceso para el equipo</p></div>
+            <div class="demo-bullet"><div class="demo-dot"></div><p>Portal del cliente con avance visual y aprobaciones en línea</p></div>
+            <div class="demo-bullet"><div class="demo-dot"></div><p>Bitácoras digitales y seguimiento de cambios documentados</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ══ CTA ════════════════════════════════════════════ -->
+    <section class="cta-section" id="acceso">
+      <p class="cta-eyebrow">PRE-LANZAMIENTO</p>
+      <div class="cta-inner">
+        <h2>Sé de los primeros en usar Civitas</h2>
+        <p>Los primeros 50 estudios obtienen acceso prioritario y precio especial de fundador. Sin compromisos.</p>
+        <div class="progress-wrap">
+          <div class="progress-track"><div class="progress-fill"></div></div>
+          <p class="progress-label">47 de 50 lugares tomados</p>
+        </div>
+        <div id="success-cta" class="success-msg" role="status">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          ¡Lugar reservado! Te avisamos antes del lanzamiento.
+        </div>
+        <form id="form-cta" class="cta-form-row">
+          <label for="email-cta" class="sr-only">Correo electrónico de tu estudio</label>
+          <input class="cta-input" type="email" id="email-cta" placeholder="tu@estudio.com" required autocomplete="email" aria-describedby="err-cta" />
+          <button type="submit" class="cta-submit" id="btn-cta">Quiero tener acceso anticipado</button>
+        </form>
+        <span class="field-error field-error-cta" id="err-cta" role="alert"></span>
+        <p class="cta-note">Sin tarjeta de crédito · Sin compromisos · Te avisamos antes del lanzamiento</p>
+      </div>
+    </section>
+
+
+    </main><!-- #main-content -->
+
+    <!-- ══ FOOTER ════════════════════════════════════════ -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <img src="assets/logo-civitas-color.png" alt="Civitas by Sparka Corp" width="858" height="246" loading="lazy" />
+          </div>
+          <p class="footer-copy">© 2026 Civitas SaaS. Costa Rica.</p>
+        </div>
+        <ul class="footer-links">
+          <li><a href="#funcionalidades">FUNCIONALIDADES</a></li>
+          <li><a href="mailto:contacto@civitas.app">CONTACTO</a></li>
+          <li><a href="/privacidad">PRIVACIDAD</a></li>
+        </ul>
+      </div>
+    </footer>
+
+  </div><!-- .page -->
+
+
+  <script>
+    (function () {
+      'use strict';
+
+      const YT_ID = 'G9XL1BGzIKA'; // TODO: reemplazar con el ID del video demo final
+      const RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      /* ── VIDEO MODAL ─────────────────────────── */
+      const modal = document.getElementById('video-modal');
+      const FOCUSABLE = 'button, [href], input, [tabindex]:not([tabindex="-1"])';
+      let focusTrapPrev = null;
+
+      function trapFocus(e) {
+        if (e.key !== 'Tab') return;
+        const focusable = [...modal.querySelectorAll(FOCUSABLE)].filter(el => !el.disabled);
+        const first = focusable[0];
+        const last  = focusable[focusable.length - 1];
+        if (e.shiftKey) {
+          if (document.activeElement === first) { e.preventDefault(); last.focus(); }
+        } else {
+          if (document.activeElement === last)  { e.preventDefault(); first.focus(); }
+        }
+      }
+
+      function openModal() {
+        focusTrapPrev = document.activeElement;
+        dismissVideoPopup();
+        document.getElementById('yt-iframe').src =
+          `https://www.youtube.com/embed/${YT_ID}?autoplay=1&rel=0`;
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        document.querySelector('.modal-close').focus();
+        document.addEventListener('keydown', trapFocus);
+      }
+      function closeModal() {
+        modal.classList.remove('open');
+        document.getElementById('yt-iframe').src = '';
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', trapFocus);
+        if (focusTrapPrev) { focusTrapPrev.focus(); focusTrapPrev = null; }
+      }
+      modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+      document.querySelector('.modal-close').addEventListener('click', closeModal);
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+      /* ── VIDEO POPUP CARD ────────────────────── */
+      const vpCard = document.getElementById('video-popup-card');
+      let vpDismissTimer = null;
+      let vpShown = false;
+
+      function showVideoPopup() {
+        if (vpShown) return;
+        vpShown = true;
+        vpCard.classList.add('show');
+        vpDismissTimer = setTimeout(dismissVideoPopup, 9000);
+      }
+
+      function dismissVideoPopup() {
+        clearTimeout(vpDismissTimer);
+        vpCard.classList.remove('show');
+      }
+
+      vpCard.addEventListener('click', openModal);
+      vpCard.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(); }
+      });
+      document.querySelector('.vp-close').addEventListener('click', e => {
+        e.stopPropagation();
+        dismissVideoPopup();
+      });
+
+      function onFirstScroll() {
+        if (window.scrollY > 80) {
+          window.removeEventListener('scroll', onFirstScroll);
+          setTimeout(showVideoPopup, 300);
+        }
+      }
+      window.addEventListener('scroll', onFirstScroll, { passive: true });
+
+      /* ── PROB VIDEO ──────────────────────────── */
+      const probVideo = document.querySelector('.prob-video');
+      if (probVideo) {
+        probVideo.addEventListener('click', openModal);
+        probVideo.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(); }
+        });
+      }
+
+      /* ── SCROLL ANIMATIONS ───────────────────── */
+      (function () {
+        const obs = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (!e.isIntersecting) return;
+            e.target.classList.add('in-view');
+            obs.unobserve(e.target);
+            e.target.addEventListener('transitionend', () => {
+              e.target.style.transitionDelay = '';
+            }, { once: true });
+          });
+        }, { threshold: 0.1, rootMargin: '0px 0px -52px 0px' });
+
+        function reg(sel, cls, baseDelay, stagger) {
+          document.querySelectorAll(sel).forEach((el, i) => {
+            el.classList.add(cls);
+            const d = (baseDelay || 0) + (stagger ? Math.min(i * stagger, 0.38) : 0);
+            if (d) el.style.transitionDelay = d + 's';
+            obs.observe(el);
+          });
+        }
+
+        reg('.prob-header',  'sr-up');
+        reg('.prob-card',    'sr-up', 0,    0.1);
+        reg('.prob-cta',     'sr-up', 0.15);
+
+        const rows = document.querySelectorAll('.feat-row');
+        if (rows[0]) {
+          reg('.feat-row:first-of-type .feat-img-left', 'sr-left');
+          reg('.feat-row:first-of-type .feat-text-col', 'sr-right', 0.12);
+        }
+        if (rows[1]) {
+          reg('.feat-row:last-of-type .feat-text-col',  'sr-left');
+          reg('.feat-row:last-of-type .feat-img-right', 'sr-right', 0.12);
+        }
+
+        reg('.features-list h2', 'sr-up');
+        reg('.feat-item',        'sr-up', 0, 0.07);
+        reg('.prob-video',   'sr-up');
+        reg('.app-shot',     'sr-up', 0, 0.1);
+        reg('.demo-header',  'sr-up');
+        reg('.demo-thumb',   'sr-left');
+        reg('.demo-text',    'sr-right', 0.1);
+        reg('.cta-eyebrow',    'sr-up');
+        reg('.cta-inner > h2', 'sr-up', 0.08);
+        reg('.cta-inner > p',  'sr-up', 0.14);
+        reg('.cta-form-row',   'sr-up', 0.2);
+        reg('.cta-note',       'sr-up', 0.28);
+
+        const fill = document.querySelector('.progress-fill');
+        if (fill) {
+          fill.dataset.w = '94%';
+          fill.style.width = '0';
+          fill.style.transition = 'width 1.3s cubic-bezier(.22,1,.36,1) .3s';
+          const pObs = new IntersectionObserver(([e]) => {
+            if (e.isIntersecting) { fill.style.width = fill.dataset.w; pObs.disconnect(); }
+          }, { threshold: 0.5 });
+          pObs.observe(fill.closest('.cta-section') || fill);
+        }
+
+        reg('.footer-inner', 'sr-up');
+      })();
+
+      /* ── NAV scroll tint ─────────────────────── */
+      const nav = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        nav.style.background = window.scrollY > 20
+          ? 'rgba(255,255,255,0.97)'
+          : 'rgba(255,255,255,0.85)';
+      }, { passive: true });
+
+      /* ── HAMBURGER MENU ─────────────────────── */
+      (function () {
+        const btn  = document.getElementById('nav-hamburger');
+        const menu = document.getElementById('nav-mobile-menu');
+        if (!btn || !menu) return;
+
+        function closeMenu() {
+          btn.classList.remove('open');
+          menu.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+          menu.setAttribute('aria-hidden', 'true');
+        }
+
+        btn.addEventListener('click', () => {
+          const isOpen = btn.classList.toggle('open');
+          menu.classList.toggle('open', isOpen);
+          btn.setAttribute('aria-expanded', String(isOpen));
+          menu.setAttribute('aria-hidden', String(!isOpen));
+        });
+
+        menu.querySelectorAll('[data-nav-close]').forEach(el =>
+          el.addEventListener('click', closeMenu));
+
+        window.addEventListener('scroll', () => {
+          if (window.scrollY > 10) closeMenu();
+        }, { passive: true, once: false });
+      })();
+
+      /* ── FORM SUBMIT ─────────────────────────── */
+      function handleSubmit(e, id) {
+        e.preventDefault();
+        const emailEl = document.getElementById('email-' + id);
+        const errEl   = document.getElementById('err-' + id);
+        const btnEl   = document.getElementById('btn-' + id);
+        const val     = emailEl ? emailEl.value.trim() : '';
+
+        if (errEl)   { errEl.textContent = ''; errEl.classList.remove('show'); }
+        if (emailEl) { emailEl.style.borderColor = ''; }
+
+        if (!val || !RE.test(val)) {
+          if (emailEl) emailEl.style.borderColor = '#ef4444';
+          if (errEl)   { errEl.textContent = 'Ingresá un correo electrónico válido.'; errEl.classList.add('show'); }
+          return;
+        }
+
+        if (btnEl) { btnEl.disabled = true; btnEl.textContent = 'Enviando…'; }
+
+        setTimeout(() => {
+          try {
+            const saved = JSON.parse(localStorage.getItem('civitas_emails') || '[]');
+            if (!saved.includes(val)) {
+              saved.push(val);
+              localStorage.setItem('civitas_emails', JSON.stringify(saved));
+            }
+          } catch (_) { /* localStorage no disponible en este contexto */ }
+
+          const form = document.getElementById('form-' + id);
+          const msg  = document.getElementById('success-' + id);
+          if (form) form.style.display = 'none';
+          if (msg) {
+            msg.style.opacity = '0';
+            msg.classList.add('show');
+            requestAnimationFrame(() => {
+              msg.style.transition = 'opacity .4s';
+              msg.style.opacity = '1';
+            });
+          }
+          const trust = form?.closest('.form-wrap')?.querySelector('.form-trust');
+          if (trust) trust.style.display = 'none';
+        }, 600);
+      }
+
+      document.getElementById('form-hero').addEventListener('submit', e => handleSubmit(e, 'hero'));
+      document.getElementById('form-cta').addEventListener('submit',  e => handleSubmit(e, 'cta'));
+
+    })();
+  </script>
+</body>
+</html>
